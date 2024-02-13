@@ -43,8 +43,8 @@ model User {
   id          Int      @id @default(autoincrement())
   displayName String   @map("display_name")
   password    String
-  mobile      String   @unique
-  email       String   @unique
+  mobile      String?  @unique
+  email       String?  @unique
   Memo        Memo[]
   Theme       Theme[]
   Place       Place[]

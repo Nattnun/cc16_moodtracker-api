@@ -1,0 +1,52 @@
+### Authentication ###
+POST /auth/register register a new user
+REQUEST BODY
+{
+    firstName*          string  user first name
+    lastName*           string  user last name
+    emailOrMobile*      string  email address of mobile number
+    password*           string  password must contain 6 character only alphabet
+    confirmPassword*    string  confirm password must match a password
+}
+RESPONSE
+201
+{
+    accessToken         string  user token
+    newUser             object  user object without password
+}
+400
+{
+    message             string  Client error message
+}
+500
+{
+    message             string  server error message
+}
+
+POST/ auth/ login       login
+{
+    emailOrMobile*      string  email address or mobile number
+    password*           string  user password
+}
+RESPONSE
+200
+{
+    accessToken         string  user token
+    user                object  user object without password
+}
+400
+{
+    message             string  Client error message
+}
+500
+{
+    message             string  server error message
+}
+
+GET /auth/me            get     Authenticated user data
+HEADER
+    AUTHORIZATION       Bearer [JWT]
+RESPONSE
+    200 {user: {id, firstName, lastName, email, mobile, profileImage, coverImage, createdAt, updatedAt}}
+    401 {message: 'unauthenticated'}
+    500 {message: 'internal server error'}
