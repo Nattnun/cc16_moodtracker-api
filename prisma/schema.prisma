@@ -6,6 +6,108 @@ generator client {
 }
 
 datasource db {
-  provider = "postgresql"
+  provider = "mysql"
   url      = env("DATABASE_URL")
+}
+
+enum TagType {
+  DEFAULT
+  USER
+}
+
+enum EmotionalGroup {
+  HIGH_ENERGY_UNPLEASANT
+  HIGH_ENERGY_PLEASANT
+  LOW_ENERGY_UNPLEASANT
+  LOW_ENERGY_PLEASANT
+}
+
+enum TimePeriod {
+  MORNING
+  AFTERNOON
+  EVENINGS
+  LATENIGHT
+}
+
+enum WeekDay {
+  SUN
+  MON
+  TUE
+  WED
+  THU
+  FRI
+  SAT
+}
+
+model User {
+  id          Int      @id @default(autoincrement())
+  displayName String   @map("display_name")
+  password    String
+  mobile      String   @unique
+  email       String   @unique
+  Memo        Memo[]
+  Theme       Theme[]
+  Place       Place[]
+  People      People[]
+
+  @@map("users")
+}
+
+model Theme {
+  id      Int     @id @default(autoincrement())
+  name    String
+  tagType TagType @default(DEFAULT)
+  user    User    @relation(fields: [userId], references: [id])
+  userId  Int
+  Memo    Memo[]
+
+  @@map("themes")
+}
+
+model Place {
+  id      Int     @id @default(autoincrement())
+  name    String
+  tagType TagType @default(DEFAULT)
+  user    User    @relation(fields: [userId], references: [id])
+  userId  Int
+  Memo    Memo[]
+
+  @@map("places")
+}
+
+model People {
+  id      Int     @id @default(autoincrement())
+  name    String
+  tagType TagType @default(DEFAULT)
+  user    User    @relation(fields: [userId], references: [id])
+  userId  Int
+  Memo    Memo[]
+
+  @@map("peoples")
+}
+
+model Emotion {
+  id             Int            @id @default(autoincrement())
+  name           String
+  description    String         @db.Text
+  emotionalGroup EmotionalGroup
+  Memo           Memo[]
+}
+
+model Memo {
+  id         Int        @id @default(autoincrement())
+  memo       String     @db.Text
+  createdAt  DateTime   @default(now()) @map("created_at") @db.Timestamp(0)
+  timePeriod TimePeriod @map("time_period")
+  weekDay    WeekDay    @map("week_day")
+  user       User       @relation(fields: [userId], references: [id])
+  userId     Int        @map("user_id")
+  emotion    Emotion    @relation(fields: [emotionId], references: [id])
+  emotionId  Int        @map("emotion_id")
+  theme      Theme      @relation(fields: [themeId], references: [id])
+  themeId    Int        @map("theme_id")
+  place      Place      @relation(fields: [placeId], references: [id])
+  placeId    Int        @map("place_id")
+  people     People     @relation(fields: [peopleId], references: [id])
+  peopleId   Int        @map("prople_id")
 }
