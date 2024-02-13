@@ -29,11 +29,20 @@ exports.login = catchError(async (req, res, next) => {
   );
 
   if (!existsUser) {
-    createError("Invalid email or mobile", 400);
+    createError("Invalid email or mobile or password", 400);
   }
 
   const isMatch = await hashService.compare(
     req.body.password,
-    existsUser.body.password
+    existsUser.password
   );
+  if (!isMatch) {
+    createError("Invalid email or mobile or password", 400);
+  }
+
+  const payload = { userId: existsUser.id };
+  const accessToken = jwtService.sign(payload);
+  delete existsUser.password;
+
+  res.status(200).json({ accessToken, user: existsUser });
 });
