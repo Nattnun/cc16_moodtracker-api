@@ -4,6 +4,7 @@ const emotionController = require("../controllers/emotion-controller");
 
 const router = express.Router();
 
-router.get("/getEmotionByGroup", emotionController.getEmotionByGroup);
+router.post("/getEmotionByGroup", emotionController.getEmotionByGroup);
+router.get("/getEmotionById/:emoId", emotionController.getEmotionById);
 
 module.exports = router;

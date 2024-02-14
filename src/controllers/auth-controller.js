@@ -3,6 +3,7 @@ const createError = require("../utils/create-error");
 const userService = require("../services/user-service");
 const hashService = require("../services/hash-service");
 const jwtService = require("../services/jwt-service");
+const dataService = require("../services/default-data-service");
 
 exports.register = catchError(async (req, res, next) => {
   const existsUser = await userService.findUserByEmailOrMobile(
@@ -20,7 +21,11 @@ exports.register = catchError(async (req, res, next) => {
   const accessToken = jwtService.sign(payload);
   delete newUser.password;
 
-  res.status(201).json({ accessToken, newUser });
+  const people = await dataService.createDefaultDataPeople(newUser.id);
+  const place = await dataService.createDefaultDataPlace(newUser.id);
+  const theme = await dataService.createDefaultDataTheme(newUser.id);
+
+  res.status(201).json({ accessToken, newUser, people, place, theme });
 });
 
 exports.login = catchError(async (req, res, next) => {
