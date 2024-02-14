@@ -4,6 +4,7 @@ const cors = require("cors");
 const morgan = require("morgan");
 
 const authRoute = require("./routes/auth-route");
+const emotionRoute = require("./routes/emotion-route");
 
 const errorMiddleware = require("./middlewares/error");
 const notFoundMiddleware = require("./middlewares/not-found");
@@ -17,6 +18,7 @@ app.use(limiter);
 app.use(morgan("dev"));
 
 app.use("/auth", authRoute);
+app.use("/emotion", emotionRoute);
 
 app.use(errorMiddleware);
 app.use(notFoundMiddleware);
