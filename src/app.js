@@ -6,6 +6,7 @@ const morgan = require("morgan");
 const authRoute = require("./routes/auth-route");
 const emotionRoute = require("./routes/emotion-route");
 const tagsRoute = require("./routes/tags-route");
+const memoRoute = require("./routes/memo-route");
 
 const errorMiddleware = require("./middlewares/error");
 const notFoundMiddleware = require("./middlewares/not-found");
@@ -15,12 +16,13 @@ const app = express();
 
 app.use(cors());
 app.use(express.json());
-app.use(limiter);
+// app.use(limiter);
 app.use(morgan("dev"));
 
 app.use("/auth", authRoute);
 app.use("/emotion", emotionRoute);
 app.use("/tags", tagsRoute);
+app.use("/memo", memoRoute);
 
 app.use(errorMiddleware);
 app.use(notFoundMiddleware);

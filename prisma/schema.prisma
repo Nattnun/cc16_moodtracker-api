@@ -96,7 +96,7 @@ model Emotion {
 
 model Memo {
   id         Int        @id @default(autoincrement())
-  memo       String     @db.Text
+  memo       String?    @db.Text
   createdAt  DateTime   @default(now()) @map("created_at") @db.Timestamp(0)
   timePeriod TimePeriod @map("time_period")
   weekDay    WeekDay    @map("week_day")
