@@ -7,11 +7,11 @@ exports.getEmotionByGroup = catchError(async (req, res, next) => {
     req.body.emotionalGroup
   );
 
-  res.status(201).json({ count: emotions.length, emotions });
+  res.status(200).json({ count: emotions.length, emotions });
 });
 
 exports.getEmotionById = catchError(async (req, res, next) => {
   const emotion = await emotionService.getEmotionById(+req.params.emoId);
 
-  res.status(201).json({ emotion });
+  res.status(200).json({ emotion });
 });
