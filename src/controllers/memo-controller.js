@@ -42,3 +42,9 @@ exports.createEmotionMemo = catchError(async (req, res, next) => {
 
   res.status(201).json(memo);
 });
+
+exports.getLatestMemo = catchError(async (req, res, next) => {
+  const memo = await memoService.getLatestMemo(+req.params.userId);
+
+  res.status(200).json(memo);
+});
