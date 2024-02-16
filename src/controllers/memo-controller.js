@@ -60,3 +60,9 @@ exports.getBreakDownMemo = catchError(async (req, res, next) => {
 
   res.status(200).json(memo);
 });
+
+exports.getMostEmotion = catchError(async (req, res, next) => {
+  const emotion = await memoService.getMostEmotion(+req.params.userId);
+
+  res.status(200).json(emotion);
+});
