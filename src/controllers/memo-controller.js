@@ -54,3 +54,9 @@ exports.getAllMemo = catchError(async (req, res, next) => {
 
   res.status(200).json(memo);
 });
+
+exports.getBreakDownMemo = catchError(async (req, res, next) => {
+  const memo = await memoService.getBreakDownMemo(+req.params.userId);
+
+  res.status(200).json(memo);
+});

@@ -16,6 +16,9 @@ const app = express();
 
 app.use(cors());
 app.use(express.json());
+BigInt.prototype.toJSON = function () {
+  return this.toString();
+};
 // app.use(limiter);
 app.use(morgan("dev"));
 
