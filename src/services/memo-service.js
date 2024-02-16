@@ -9,3 +9,10 @@ exports.getLatestMemo = (userId) =>
     orderBy: { createdAt: "desc" },
     include: { emotion: true },
   });
+
+exports.getAllMemo = (userId) =>
+  prisma.memo.findMany({
+    where: { userId },
+    orderBy: { createdAt: "desc" },
+    include: { emotion: true },
+  });
