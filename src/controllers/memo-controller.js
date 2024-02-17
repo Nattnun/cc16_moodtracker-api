@@ -24,9 +24,9 @@ exports.createEmotionMemo = catchError(async (req, res, next) => {
   };
 
   req.body.timePeriod = getTimePeriod(timeHour);
-  console.log("req.body.timePeriod", req.body.timePeriod);
+  // console.log("req.body.timePeriod", req.body.timePeriod);
 
-  console.log("***********day**********", time.getDay());
+  // console.log("***********day**********", time.getDay());
 
   const weekDay = ["SUN", "MON", "TUE", "WED", "THU", "FRI", "SAT"];
 
@@ -65,4 +65,29 @@ exports.getMostEmotion = catchError(async (req, res, next) => {
   const emotion = await memoService.getMostEmotion(+req.params.userId);
 
   res.status(200).json(emotion);
+});
+
+//Time-period
+exports.getMorningEmotion = catchError(async (req, res, next) => {
+  const morning = await memoService.getMorningEmotion(+req.params.userId);
+
+  res.status(200).json(morning);
+});
+
+exports.getAfternoonEmotion = catchError(async (req, res, next) => {
+  const afternoon = await memoService.getAfternoonEmotion(+req.params.userId);
+
+  res.status(200).json(afternoon);
+});
+
+exports.geEveningsEmotion = catchError(async (req, res, next) => {
+  const evenings = await memoService.getEveningsEmotion(+req.params.userId);
+
+  res.status(200).json(evenings);
+});
+
+exports.getLateNightEmotion = catchError(async (req, res, next) => {
+  const lateNight = await memoService.getLateNightEmotion(+req.params.userId);
+
+  res.status(200).json(lateNight);
 });
