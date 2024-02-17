@@ -91,3 +91,46 @@ exports.getLateNightEmotion = catchError(async (req, res, next) => {
 
   res.status(200).json(lateNight);
 });
+
+//day-of-week
+exports.getSundayEmotion = catchError(async (req, res, next) => {
+  const sunData = await memoService.getSundayEmotion(+req.params.userId);
+
+  res.status(200).json(sunData);
+});
+
+exports.getMondayEmotion = catchError(async (req, res, next) => {
+  const monData = await memoService.getMondayEmotion(+req.params.userId);
+
+  res.status(200).json(monData);
+});
+
+exports.getTuesdayEmotion = catchError(async (req, res, next) => {
+  const tueData = await memoService.getTuesdayEmotion(+req.params.userId);
+
+  res.status(200).json(tueData);
+});
+
+exports.getWednesdayEmotion = catchError(async (req, res, next) => {
+  const wedData = await memoService.getWednesdayEmotion(+req.params.userId);
+
+  res.status(200).json(wedData);
+});
+
+exports.getThursdayEmotion = catchError(async (req, res, next) => {
+  const thuData = await memoService.getThursdayEmotion(+req.params.userId);
+
+  res.status(200).json(thuData);
+});
+
+exports.getFridayEmotion = catchError(async (req, res, next) => {
+  const friData = await memoService.getFridayEmotion(+req.params.userId);
+
+  res.status(200).json(friData);
+});
+
+exports.getSaturdayEmotion = catchError(async (req, res, next) => {
+  const satData = await memoService.getSaturdayEmotion(+req.params.userId);
+
+  res.status(200).json(satData);
+});

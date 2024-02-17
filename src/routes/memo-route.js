@@ -13,5 +13,13 @@ router.get("/getMorning/:userId", memoController.getMorningEmotion);
 router.get("/getAfternoon/:userId", memoController.getAfternoonEmotion);
 router.get("/getEvenings/:userId", memoController.geEveningsEmotion);
 router.get("/getLateNight/:userId", memoController.getLateNightEmotion);
+//day-of-week
+router.get("/getSunday/:userId", memoController.getSundayEmotion);
+router.get("/getMonday/:userId", memoController.getMondayEmotion);
+router.get("/getTuesday/:userId", memoController.getTuesdayEmotion);
+router.get("/getWednesday/:userId", memoController.getWednesdayEmotion);
+router.get("/getThursday/:userId", memoController.getThursdayEmotion);
+router.get("/getFriday/:userId", memoController.getFridayEmotion);
+router.get("/getSaturday/:userId", memoController.getSaturdayEmotion);
 
 module.exports = router;
