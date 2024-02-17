@@ -109,5 +109,5 @@ model Memo {
   place      Place?     @relation(fields: [placeId], references: [id])
   placeId    Int?       @map("place_id")
   people     People?    @relation(fields: [peopleId], references: [id])
-  peopleId   Int?       @map("prople_id")
+  peopleId   Int?       @map("people_id")
 }

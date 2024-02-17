@@ -36,7 +36,7 @@ exports.createEmotionMemo = catchError(async (req, res, next) => {
 
   req.body.weekDay = dayOfWeek(time.getDay());
 
-  console.log("*********weekday********", req.body.weekDay);
+  // console.log("*********weekday********", req.body.weekDay);
 
   const memo = await memoService.createEmotionMemo(req.body);
 
