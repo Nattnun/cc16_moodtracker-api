@@ -148,3 +148,9 @@ exports.getPlace = catchError(async (req, res, next) => {
 
   res.status(200).json(place);
 });
+
+exports.getPeople = catchError(async (req, res, next) => {
+  const people = await memoService.getAllPeople(+req.params.userId);
+
+  res.status(200).json(people);
+});

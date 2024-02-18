@@ -82,3 +82,15 @@ exports.getAllPlace = (userId) =>
       },
     },
   });
+
+exports.getAllPeople = (userId) =>
+  prisma.people.findMany({
+    where: { userId },
+    include: {
+      Memo: {
+        include: { emotion: true },
+        orderBy: { createdAt: "desc" },
+        take: 6,
+      },
+    },
+  });
