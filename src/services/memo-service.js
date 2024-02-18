@@ -37,7 +37,6 @@ exports.getLateNightEmotion = (userId) =>
   prisma.$queryRaw`SELECT COUNT(*) AS count_emotionalGroup ,em.emotionalGroup , mm.time_period FROM  memo mm LEFT JOIN emotion em ON mm.emotion_id = em.id WHERE mm.user_id = ${userId} AND time_period = 'LATENIGHT' GROUP BY em.emotionalGroup`;
 
 //day-of-week
-
 exports.getSundayEmotion = (userId) =>
   prisma.$queryRaw`SELECT COUNT(*) AS count_emotionalGroup ,em.emotionalGroup , mm.week_day FROM  memo mm LEFT JOIN emotion em ON mm.emotion_id = em.id WHERE mm.user_id = ${userId} AND mm.week_day = 'SUN' GROUP BY em.emotionalGroup`;
 
@@ -58,3 +57,28 @@ exports.getFridayEmotion = (userId) =>
 
 exports.getSaturdayEmotion = (userId) =>
   prisma.$queryRaw`SELECT COUNT(*) AS count_emotionalGroup ,em.emotionalGroup , mm.week_day FROM  memo mm LEFT JOIN emotion em ON mm.emotion_id = em.id WHERE mm.user_id = ${userId} AND mm.week_day = 'SAT' GROUP BY em.emotionalGroup`;
+
+//Tags
+exports.getAllTheme = (userId) =>
+  prisma.theme.findMany({
+    where: { userId },
+    include: {
+      Memo: {
+        include: { emotion: true },
+        orderBy: { createdAt: "desc" },
+        take: 6,
+      },
+    },
+  });
+
+exports.getAllPlace = (userId) =>
+  prisma.place.findMany({
+    where: { userId },
+    include: {
+      Memo: {
+        include: { emotion: true },
+        orderBy: { createdAt: "desc" },
+        take: 6,
+      },
+    },
+  });

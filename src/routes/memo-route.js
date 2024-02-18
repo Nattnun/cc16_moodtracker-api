@@ -22,4 +22,8 @@ router.get("/getThursday/:userId", memoController.getThursdayEmotion);
 router.get("/getFriday/:userId", memoController.getFridayEmotion);
 router.get("/getSaturday/:userId", memoController.getSaturdayEmotion);
 
+//getTheme
+router.get("/getTheme/:userId", memoController.getTheme);
+router.get("/getPlace/:userId", memoController.getPlace);
+
 module.exports = router;

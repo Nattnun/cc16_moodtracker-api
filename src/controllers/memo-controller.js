@@ -2,6 +2,7 @@ const catchError = require("../utils/catch-error");
 const createError = require("../utils/create-error");
 
 const memoService = require("../services/memo-service");
+const { memo } = require("../models/prisma");
 
 exports.createEmotionMemo = catchError(async (req, res, next) => {
   //create time
@@ -133,4 +134,17 @@ exports.getSaturdayEmotion = catchError(async (req, res, next) => {
   const satData = await memoService.getSaturdayEmotion(+req.params.userId);
 
   res.status(200).json(satData);
+});
+
+//Tags
+exports.getTheme = catchError(async (req, res, next) => {
+  const theme = await memoService.getAllTheme(+req.params.userId);
+
+  res.status(200).json(theme);
+});
+
+exports.getPlace = catchError(async (req, res, next) => {
+  const place = await memoService.getAllPlace(+req.params.userId);
+
+  res.status(200).json(place);
 });
