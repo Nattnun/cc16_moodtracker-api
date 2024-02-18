@@ -50,6 +50,12 @@ exports.getLatestMemo = catchError(async (req, res, next) => {
   res.status(200).json(memo);
 });
 
+exports.getMemoById = catchError(async (req, res, next) => {
+  const memo = await memoService.getMemoById(+req.params.memoId);
+
+  res.status(200).json(memo);
+});
+
 exports.getAllMemo = catchError(async (req, res, next) => {
   const memo = await memoService.getAllMemo(+req.params.userId);
 

@@ -8,11 +8,15 @@ router.get("/getLatestMemo/:userId", memoController.getLatestMemo);
 router.get("/getAllMemo/:userId", memoController.getAllMemo);
 router.get("/getBreakDownMemo/:userId", memoController.getBreakDownMemo);
 router.get("/getMostEmotion/:userId", memoController.getMostEmotion);
+
+router.get("/getMemo/:memoId", memoController.getMemoById);
+
 //time-period
 router.get("/getMorning/:userId", memoController.getMorningEmotion);
 router.get("/getAfternoon/:userId", memoController.getAfternoonEmotion);
 router.get("/getEvenings/:userId", memoController.geEveningsEmotion);
 router.get("/getLateNight/:userId", memoController.getLateNightEmotion);
+
 //day-of-week
 router.get("/getSunday/:userId", memoController.getSundayEmotion);
 router.get("/getMonday/:userId", memoController.getMondayEmotion);

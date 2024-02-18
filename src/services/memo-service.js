@@ -10,6 +10,14 @@ exports.getLatestMemo = (userId) =>
     include: { emotion: true },
   });
 
+exports.getMemoById = (memoId) => {
+  return prisma.memo.findFirst({
+    where: { id: memoId },
+
+    include: { emotion: true, theme: true, place: true, people: true },
+  });
+};
+
 exports.getAllMemo = (userId) =>
   prisma.memo.findMany({
     where: { userId },
