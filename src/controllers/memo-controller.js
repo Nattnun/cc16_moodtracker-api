@@ -44,6 +44,12 @@ exports.createEmotionMemo = catchError(async (req, res, next) => {
   res.status(201).json(memo);
 });
 
+exports.updateTagsByMemoId = catchError(async (req, res, next) => {
+  const tags = await memoService.updateTags(+req.params.memoId, req.body);
+
+  res.status(200).json(tags);
+});
+
 exports.getLatestMemo = catchError(async (req, res, next) => {
   const memo = await memoService.getLatestMemo(+req.params.userId);
 
@@ -87,7 +93,7 @@ exports.getAfternoonEmotion = catchError(async (req, res, next) => {
   res.status(200).json(afternoon);
 });
 
-exports.geEveningsEmotion = catchError(async (req, res, next) => {
+exports.getEveningsEmotion = catchError(async (req, res, next) => {
   const evenings = await memoService.getEveningsEmotion(+req.params.userId);
 
   res.status(200).json(evenings);

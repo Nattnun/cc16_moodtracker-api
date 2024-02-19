@@ -11,10 +11,12 @@ router.get("/getMostEmotion/:userId", memoController.getMostEmotion);
 
 router.get("/getMemo/:memoId", memoController.getMemoById);
 
+router.patch("/updateTags/:memoId", memoController.updateTagsByMemoId);
+
 //time-period
 router.get("/getMorning/:userId", memoController.getMorningEmotion);
 router.get("/getAfternoon/:userId", memoController.getAfternoonEmotion);
-router.get("/getEvenings/:userId", memoController.geEveningsEmotion);
+router.get("/getEvenings/:userId", memoController.getEveningsEmotion);
 router.get("/getLateNight/:userId", memoController.getLateNightEmotion);
 
 //day-of-week

@@ -3,6 +3,9 @@ const prisma = require("../models/prisma");
 exports.createEmotionMemo = (memoData) =>
   prisma.memo.create({ data: memoData });
 
+exports.updateTags = (memoId, tagData) =>
+  prisma.memo.update({ where: { id: memoId }, data: tagData });
+
 exports.getLatestMemo = (userId) =>
   prisma.memo.findFirst({
     where: { userId },
