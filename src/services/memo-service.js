@@ -13,6 +13,9 @@ exports.getLatestMemo = (userId) =>
     include: { emotion: true },
   });
 
+exports.deleteMemoById = (memoId) =>
+  prisma.memo.delete({ where: { id: memoId } });
+
 exports.getMemoById = (memoId) => {
   return prisma.memo.findFirst({
     where: { id: memoId },

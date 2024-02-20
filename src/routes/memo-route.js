@@ -1,17 +1,28 @@
 const express = require("express");
 const memoController = require("../controllers/memo-controller");
+const authenticate = require("../middlewares/authenticate");
 
 const router = express.Router();
 
-router.post("/createMemo", memoController.createEmotionMemo);
+router.post("/createMemo", authenticate, memoController.createEmotionMemo);
 router.get("/getLatestMemo/:userId", memoController.getLatestMemo);
 router.get("/getAllMemo/:userId", memoController.getAllMemo);
 router.get("/getBreakDownMemo/:userId", memoController.getBreakDownMemo);
 router.get("/getMostEmotion/:userId", memoController.getMostEmotion);
 
-router.get("/getMemo/:memoId", memoController.getMemoById);
+router.get("/getMemo/:memoId", authenticate, memoController.getMemoById);
 
-router.patch("/updateTags/:memoId", memoController.updateTagsByMemoId);
+router.patch(
+  "/updateTags/:memoId",
+  authenticate,
+  memoController.updateTagsByMemoId
+);
+
+router.delete(
+  "/deleteMemo/:memoId",
+  authenticate,
+  memoController.deleteMemoByMemoId
+);
 
 //time-period
 router.get("/getMorning/:userId", memoController.getMorningEmotion);
