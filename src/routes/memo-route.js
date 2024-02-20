@@ -5,11 +5,23 @@ const authenticate = require("../middlewares/authenticate");
 const router = express.Router();
 
 router.post("/createMemo", authenticate, memoController.createEmotionMemo);
-router.get("/getLatestMemo/:userId", memoController.getLatestMemo);
-router.get("/getAllMemo/:userId", memoController.getAllMemo);
-router.get("/getBreakDownMemo/:userId", memoController.getBreakDownMemo);
-router.get("/getMostEmotion/:userId", memoController.getMostEmotion);
 
+router.get(
+  "/getLatestMemo/:userId",
+  authenticate,
+  memoController.getLatestMemo
+);
+router.get("/getAllMemo/:userId", authenticate, memoController.getAllMemo);
+router.get(
+  "/getBreakDownMemo/:userId",
+  authenticate,
+  memoController.getBreakDownMemo
+);
+router.get(
+  "/getMostEmotion/:userId",
+  authenticate,
+  memoController.getMostEmotion
+);
 router.get("/getMemo/:memoId", authenticate, memoController.getMemoById);
 
 router.patch(
