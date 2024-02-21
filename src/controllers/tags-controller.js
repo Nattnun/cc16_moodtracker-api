@@ -20,3 +20,32 @@ exports.getPeopleTagsByUserId = catchError(async (req, res, next) => {
 
   res.status(200).json({ peopleTags });
 });
+
+//createTag
+
+exports.createThemeTag = catchError(async (req, res, next) => {
+  const themeTag = await tagsService.createThemeTag(
+    req.body.name,
+    +req.params.userId
+  );
+
+  res.status(201).json(themeTag);
+});
+
+exports.createPlaceTag = catchError(async (req, res, next) => {
+  const placeTag = await tagsService.createPlaceTag(
+    req.body.name,
+    +req.params.userId
+  );
+
+  res.status(201).json(placeTag);
+});
+
+exports.createPeopleTag = catchError(async (req, res, next) => {
+  const peopleTag = await tagsService.createPeopleTag(
+    req.body.name,
+    +req.params.userId
+  );
+
+  res.status(201).json(peopleTag);
+});
