@@ -19,3 +19,24 @@ exports.createPlaceTag = (tagData, userId) =>
 
 exports.createPeopleTag = (tagData, userId) =>
   prisma.people.create({ data: { name: tagData, userId, tagType: "USER" } });
+
+//findAndUpdateMemoByMemoId
+
+exports.themeIdToNull = (themeId) =>
+  prisma.memo.updateMany({ where: { themeId }, data: { themeId: null } });
+
+exports.placeIdToNull = (placeId) =>
+  prisma.memo.updateMany({ where: { placeId }, data: { placeId: null } });
+
+exports.peopleIdToNull = (peopleId) =>
+  prisma.memo.updateMany({ where: { peopleId }, data: { peopleId: null } });
+
+//deleteThemeByThemeId
+exports.deleteTheme = (themeId) =>
+  prisma.theme.delete({ where: { id: themeId } });
+
+exports.deletePlace = (placeId) =>
+  prisma.place.delete({ where: { id: placeId } });
+
+exports.deletePeople = (peopleId) =>
+  prisma.people.delete({ where: { id: peopleId } });

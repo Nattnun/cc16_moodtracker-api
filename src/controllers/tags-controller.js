@@ -49,3 +49,26 @@ exports.createPeopleTag = catchError(async (req, res, next) => {
 
   res.status(201).json(peopleTag);
 });
+
+//deleteTag
+
+exports.deleteThemeTag = catchError(async (req, res, next) => {
+  await tagsService.themeIdToNull(+req.params.themeId);
+  const result = await tagsService.deleteTheme(+req.params.themeId);
+
+  res.status(204).json(result);
+});
+
+exports.deletePlaceTag = catchError(async (req, res, next) => {
+  await tagsService.placeIdToNull(+req.params.placeId);
+  const result = await tagsService.deletePlace(+req.params.placeId);
+
+  res.status(204).json(result);
+});
+
+exports.deletePeopleTag = catchError(async (req, res, next) => {
+  await tagsService.peopleIdToNull(+req.params.peopleId);
+  const result = await tagsService.deletePeople(+req.params.peopleId);
+
+  res.status(204).json(result);
+});
