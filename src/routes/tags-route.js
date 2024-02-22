@@ -26,8 +26,20 @@ router.post(
 );
 
 //delete
-router.delete("/deleteTheme/:themeId", tagsController.deleteThemeTag);
-router.delete("/deletePlace/:placeId", tagsController.deletePlaceTag);
-router.delete("/deletePeople/:peopleId", tagsController.deletePeopleTag);
+router.delete(
+  "/deleteTheme/:themeId",
+  authenticate,
+  tagsController.deleteThemeTag
+);
+router.delete(
+  "/deletePlace/:placeId",
+  authenticate,
+  tagsController.deletePlaceTag
+);
+router.delete(
+  "/deletePeople/:peopleId",
+  authenticate,
+  tagsController.deletePeopleTag
+);
 
 module.exports = router;
