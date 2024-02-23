@@ -11,6 +11,7 @@ const memoRoute = require("./routes/memo-route");
 const errorMiddleware = require("./middlewares/error");
 const notFoundMiddleware = require("./middlewares/not-found");
 const limiter = require("./middlewares/rate-limit");
+const authenticate = require("./middlewares/authenticate");
 
 const app = express();
 
@@ -23,9 +24,9 @@ BigInt.prototype.toJSON = function () {
 app.use(morgan("dev"));
 
 app.use("/auth", authRoute);
-app.use("/emotion", emotionRoute);
-app.use("/tags", tagsRoute);
-app.use("/memo", memoRoute);
+app.use("/emotion", authenticate, emotionRoute);
+app.use("/tags", authenticate, tagsRoute);
+app.use("/memo", authenticate, memoRoute);
 
 app.use(errorMiddleware);
 app.use(notFoundMiddleware);

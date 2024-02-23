@@ -1,40 +1,19 @@
 const express = require("express");
 const memoController = require("../controllers/memo-controller");
-const authenticate = require("../middlewares/authenticate");
 
 const router = express.Router();
 
-router.post("/createMemo", authenticate, memoController.createEmotionMemo);
+router.post("/createMemo", memoController.createEmotionMemo);
 
-router.get(
-  "/getLatestMemo/:userId",
-  authenticate,
-  memoController.getLatestMemo
-);
-router.get("/getAllMemo/:userId", authenticate, memoController.getAllMemo);
-router.get(
-  "/getBreakDownMemo/:userId",
-  authenticate,
-  memoController.getBreakDownMemo
-);
-router.get(
-  "/getMostEmotion/:userId",
-  authenticate,
-  memoController.getMostEmotion
-);
-router.get("/getMemo/:memoId", authenticate, memoController.getMemoById);
+router.get("/getLatestMemo/:userId", memoController.getLatestMemo);
+router.get("/getAllMemo/:userId", memoController.getAllMemo);
+router.get("/getBreakDownMemo/:userId", memoController.getBreakDownMemo);
+router.get("/getMostEmotion/:userId", memoController.getMostEmotion);
+router.get("/getMemo/:memoId", memoController.getMemoById);
 
-router.patch(
-  "/updateTags/:memoId",
-  authenticate,
-  memoController.updateTagsByMemoId
-);
+router.patch("/updateTags/:memoId", memoController.updateTagsByMemoId);
 
-router.delete(
-  "/deleteMemo/:memoId",
-  authenticate,
-  memoController.deleteMemoByMemoId
-);
+router.delete("/deleteMemo/:memoId", memoController.deleteMemoByMemoId);
 
 //time-period
 router.get("/getMorning/:userId", memoController.getMorningEmotion);
